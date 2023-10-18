@@ -1,52 +1,44 @@
 #include <stdarg.h>
 #include <stdio.h>
-/**
- * _printf - Printf function
- * @format: format.
- * Return: Printed chars.
- *
- */
-int _printf(const char *format, ...)
-{
-    int i, printed = 0;
-    va_list list;
 
-    if (format == NULL)
-        return (-1);
+int _printf(const char *format, ...) {
+   int count = 0;
+   va_list args;
+   va_start(args, format);
 
-    va_start(list, format);
+   for (const char *p = format; *p; ++p) {
+       if (*p != '%') {
+           putchar(*p);
+           count++;
+       } else {
+           p++;
+           switch (*p) {
+               case 'c': {
+                   char c = (char) va_arg(args, int);
+                   putchar(c);
+                   count++;
+                   break;
+               }
+               case 's': {
+                   const char *s = va_arg(args, const char *);
+                   for (const char *sp = s; *sp; ++sp) {
+                       putchar(*sp);
+                       count++;
+                   }
+                   break;
+               }
+               case '%': {
+                   putchar('%');
+                   count++;
+                   break;
+               }
+               default: {
+                   break;
+               }
+           }
+       }
+   }
 
-    for (i = 0; format && format[i] != '\0'; i++)
-    {
-        if (format[i] != '%')
-        {
-            putchar(format[i]);
-            printed++;
-        }
-        else
-        {
-            switch (format[i + 1])
-            {
-                case 'c':
-                    putchar((char)va_arg(list, int));
-                    printed++;
-                    break;
-                case 's':
-                    fputs(va_arg(list, char*), stdout);
-                    printed += strlen(va_arg(list, char*));
-                    break;
-                case '%':
-                    putchar('%');
-                    printed++;
-                    break;
-                default:
-                    return (-1);
-            }
-            i++;
-        }
-    }
-
-    va_end(list);
-
-    return (printed);
+   va_end(args);
+   return count;
 }
