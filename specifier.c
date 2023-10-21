@@ -9,20 +9,20 @@
 int (*geting_specifier(char *s))(va_list ap, params_t *params)
 {
 	specifier_t specifiers[] = {
-		{"c", print_char},
-		{"d", print_int},
-		{"i", print_int},
-		{"s", print_string},
-		{"%", print_percent},
-		{"b", print_binary},
-		{"o", print_octal},
-		{"u", print_unsigned},
-		{"x", print_hex},
-		{"X", print_HEX},
-		{"p", print_address},
-		{"S", print_S},
-		{"r", print_rev},
-		{"R", print_rot13},
+		{"c", printing_char},
+		{"d", print_int_1},
+		{"i", print_int_1},
+		{"s", printed_string},
+		{"%", print_percent02},
+		{"b", my_print_into_binary},
+		{"o", my_print_to_octal},
+		{"u", printing_unsigned},
+		{"x", my_print_to_hex},
+		{"X", my_print_into_HEX},
+		{"p", printing_address},
+		{"S", print_co},
+		{"r", print_revw},
+		{"R", print_rot1345},
 		{NULL, NULL}
 	};
 	int i = 0;
@@ -129,7 +129,7 @@ char *get_widths5(char *s, params_t *params, va_list tree)
 	}
 	else
 	{
-		while (_isdigit(*s))
+		while (_is_digiting(*s))
 			d = d * 10 + (*s++ - '0');
 	}
 	params->width = d;

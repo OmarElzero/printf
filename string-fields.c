@@ -22,7 +22,7 @@ char *get_precisions1(char *p, params_t *params, va_list tree)
 	}
 	else
 	{
-		while (_isdigit(*p))
+		while (_is_digiting(*p))
 			d = d * 10 + (*p++ - '0');
 	}
 	params->precision = d;

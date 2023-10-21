@@ -35,7 +35,7 @@ int _strleng(char *s)
  */
 int print_my_number(char *tour, params_t *params)
 {
-	unsigned int i = _strlen(tour);
+	unsigned int i = _strleng(tour);
 	int neg = (!params->unsign && *tour == '-');
 
 	if (!params->precision && *tour == '0' && !tour[1])
@@ -52,9 +52,9 @@ int print_my_number(char *tour, params_t *params)
 		*--tour = '-';
 
 	if (!params->minus_flag)
-		return (print_number_right_shift(tour, params));
+		return (printing_number_right_shift(tour, params));
 	else
-		return (print_number_left_shift(tour, params));
+		return (printing_number_left_shift(tour, params));
 }
 
 /**
@@ -66,7 +66,7 @@ int print_my_number(char *tour, params_t *params)
  */
 int printing_number_right_shift(char *tour, params_t *params)
 {
-	unsigned int n = 0, neg, neg2, i = _strlen(tour);
+	unsigned int n = 0, neg, neg2, i = _strleng(tour);
 	char pad_char = ' ';
 
 	if (params->zero_flag && !params->minus_flag)
@@ -80,22 +80,22 @@ int printing_number_right_shift(char *tour, params_t *params)
 		(!params->plus_flag && params->space_flag && !neg2))
 		i++;
 	if (neg && pad_char == '0')
-		n += _putchar('-');
+		n += putchar('-');
 	if (params->plus_flag && !neg2 && pad_char == '0' && !params->unsign)
-		n += _putchar('+');
+		n += putchar('+');
 	else if (!params->plus_flag && params->space_flag && !neg2 &&
 		!params->unsign && params->zero_flag)
-		n += _putchar(' ');
+		n += putchar(' ');
 	while (i++ < params->width)
-		n += _putchar(pad_char);
+		n += putchar(pad_char);
 	if (neg && pad_char == ' ')
-		n += _putchar('-');
+		n += putchar('-');
 	if (params->plus_flag && !neg2 && pad_char == ' ' && !params->unsign)
-		n += _putchar('+');
+		n += putchar('+');
 	else if (!params->plus_flag && params->space_flag && !neg2 &&
 		!params->unsign && !params->zero_flag)
-		n += _putchar(' ');
-	n += _puts(tour);
+		n += putchar(' ');
+	n += puts(tour);
 	return (n);
 }
 
@@ -108,7 +108,7 @@ int printing_number_right_shift(char *tour, params_t *params)
  */
 int printing_number_left_shift(char *tour, params_t *params)
 {
-	unsigned int n = 0, neg, neg2, i = _strlen(tour);
+	unsigned int n = 0, neg, neg2, i = _strleng(tour);
 	char pad_char = ' ';
 
 	if (params->zero_flag && !params->minus_flag)
@@ -120,11 +120,11 @@ int printing_number_left_shift(char *tour, params_t *params)
 		neg = 0;
 
 	if (params->plus_flag && !neg2 && !params->unsign)
-		n += _putchar('+'), i++;
+		n += putchar('+'), i++;
 	else if (params->space_flag && !neg2 && !params->unsign)
-		n += _putchar(' '), i++;
-	n += _puts(tour);
+		n += putchar(' '), i++;
+	n += puts(tour);
 	while (i++ < params->width)
-		n += _putchar(pad_char);
+		n += putchar(pad_char);
 	return (n);
 }

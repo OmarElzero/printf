@@ -10,7 +10,7 @@
  */
 int main(void)
 {
-	int len;
+	int lenth1;
 	int my_lenth2;
 	unsigned int ui;
 	void *addr;

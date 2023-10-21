@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include "convert.h"
 /**
  * my_print_to_hex - printing unsigned hex number in lowercases
  * @tree: the argument pointers
@@ -20,14 +20,14 @@ int my_print_to_hex(va_list tree, params_t *params)
 	else
 		l = (unsigned int)va_arg(tree, unsigned int);
 
-	tour = convert(l, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, params);
+	tour = (char *)(void *)convert(l, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, params);
 	if (params->hashtag_flag && l)
 	{
 		*--tour = 'x';
 		*--tour = '0';
 	}
 	params->unsign = 1;
-	return (c += print_number(tour, params));
+	return (c += print_my_number(tour, params));
 }
 
 /**
@@ -50,14 +50,14 @@ int my_print_into_HEX(va_list tree, params_t *params)
 	else
 		l = (unsigned int)va_arg(tree, unsigned int);
 
-	tour = convert(l, 16, CONVERT_UNSIGNED, params);
+	tour =(char *) convert(l, 16, CONVERT_UNSIGNED, params);
 	if (params->hashtag_flag && l)
 	{
 		*--tour = 'X';
 		*--tour = '0';
 	}
 	params->unsign = 1;
-	return (c += print_number(tour, params));
+	return (c += print_my_number(tour, params));
 }
 /**
  * my_print_into_binary - prints unsigned binary numbers
@@ -69,13 +69,13 @@ int my_print_into_HEX(va_list tree, params_t *params)
 int my_print_into_binary(va_list tree, params_t *params)
 {
 	unsigned int n = va_arg(tree, unsigned int);
-	char *tour = convert(n, 2, CONVERT_UNSIGNED, params);
+	char *tour = (char *) convert(n, 2, CONVERT_UNSIGNED, params);
 	int c = 0;
 
 	if (params->hashtag_flag && n)
 		*--tour = '0';
 	params->unsign = 1;
-	return (c += print_number(tour, params));
+	return (c += print_my_number(tour, params));
 }
 
 /**
@@ -97,10 +97,10 @@ int my_print_to_octal(va_list tree, params_t *params)
 		l = (unsigned short int)va_arg(tree, unsigned int);
 	else
 		l = (unsigned int)va_arg(tree, unsigned int);
-	tour = convert(l, 8, CONVERT_UNSIGNED, params);
+	tour = (char *) convert(l, 8, CONVERT_UNSIGNED, params);
 
 	if (params->hashtag_flag && l)
 		*--tour = '0';
 	params->unsign = 1;
-	return (c += print_number(tour, params));
+	return (c += print_my_number(tour, params));
 }

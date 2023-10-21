@@ -22,7 +22,7 @@ int _printf(const char *format, ...)
 		return (-1);
 	for (p = (char *)format; *p; p++)
 	{
-		init_params(&params, tree);
+		inite_params(&params, tree);
 		if (*p != '%')
 		{
 			omar += putchar(*p);
@@ -30,19 +30,19 @@ int _printf(const char *format, ...)
 		}
 		start = p;
 		p++;
-		while (get_flag(p, &params))
+		while (geting_my_flag(p, &params))
 		{
 			p++;
 		}
-		p = get_width(p, &params, tree);
-		p = get_precision(p, &params, tree);
-		if (get_modifier(p, &params))
+		p = get_widths5(p, &params, tree);
+		p = get_precisions1(p, &params, tree);
+		if (get_modifies(p, &params))
 			p++;
-		if (!get_specifier(p))
-			omar += print_from_to(start, p,
+		if (!geting_specifier(p))
+			omar += prints_from_too(start, p,
 				params.l_modifier || params.h_modifier ? p - 1 : 0);
 		else
-			omar += get_print_func(p, tree, &params);
+			omar += gots_print_func(p, tree, &params);
 	}
 	putchar(BUF_FLUSH);
 	va_end(tree);

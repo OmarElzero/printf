@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include "convert.h"
 /**
  * printing_char - printing characters
  * @tree: argument pointering
@@ -13,11 +13,11 @@ int printing_char(va_list tree, params_t *params)
 	unsigned int pad = 1, sum = 0, ch = va_arg(tree, int);
 
 	if (params->minus_flag)
-		sum += _putchar(ch);
+		sum += putchar(ch);
 	while (pad++ < params->width)
-		sum += _putchar(pad_char);
+		sum += putchar(pad_char);
 	if (!params->minus_flag)
-		sum += _putchar(ch);
+		sum += putchar(ch);
 	return (sum);
 }
 
@@ -38,7 +38,7 @@ int print_int_1(va_list tree, params_t *params)
 		l = (short int)va_arg(tree, int);
 	else
 		l = (int)va_arg(tree, int);
-	return (print_number(convert(l, 10, 0, params), params));
+	return (print_my_number(convert(l, 10, 0, params), params));
 }
 
 /**
@@ -58,7 +58,7 @@ int printed_string(va_list tree, params_t *params)
 		case 1:
 			tour = NULL_STRING;
 
-	j = pad = _strlen(tour);
+	j = pad = _strleng(tour);
 	if (params->precision < pad)
 		j = pad = params->precision;
 
@@ -66,19 +66,19 @@ int printed_string(va_list tree, params_t *params)
 	{
 		if (params->precision != UINT_MAX)
 			for (i = 0; i < pad; i++)
-				sum += _putchar(*tour++);
+				sum += putchar(*tour++);
 		else
-			sum += _puts(tour);
+			sum += puts(tour);
 	}
 	while (j++ < params->width)
-		sum += _putchar(pad_char);
+		sum += putchar(pad_char);
 	if (!params->minus_flag)
 	{
 		if (params->precision != UINT_MAX)
 			for (i = 0; i < pad; i++)
-				sum += _putchar(*tour++);
+				sum += putchar(*tour++);
 		else
-			sum += _puts(tour);
+			sum += puts(tour);
 	}
 	return (sum);
 }
@@ -94,7 +94,7 @@ int print_percent02(va_list tree, params_t *params)
 {
 	(void)tree;
 	(void)params;
-	return (_putchar('%'));
+	return (putchar('%'));
 }
 
 /**
@@ -111,21 +111,21 @@ int print_co(va_list tree, params_t *params)
 	int sum = 0;
 
 	if ((int)(!tour))
-		return (_puts(NULL_STRING));
+		return (puts(NULL_STRING));
 	for (; *tour; tour++)
 	{
 		if ((*tour > 0 && *tour < 32) || *tour >= 127)
 		{
-			sum += _putchar('\\');
-			sum += _putchar('x');
-			hex = convert(*tour, 16, 0, params);
+			sum += putchar('\\');
+			sum += putchar('x');
+			hex =(void *) convert(&tour, 16, 0, params);
 			if (!hex[1])
-				sum += _putchar('0');
-			sum += _puts(hex);
+				sum += putchar('0');
+			sum += puts(hex);
 		}
 		else
 		{
-			sum += _putchar(*tour);
+			sum += putchar(*tour);
 		}
 	}
 	return (sum);

@@ -15,7 +15,7 @@ int prints_from_too(char *start, char *stop, char *except)
 	while (start <= stop)
 	{
 		if (start != except)
-			sum += _putchar(*start);
+			sum += putchar(*start);
 		start++;
 	}
 	return (sum);
@@ -40,7 +40,7 @@ int print_revw(va_list tree, params_t *params)
 			len++;
 		str--;
 		for (; len > 0; len--, str--)
-			sum += _putchar(*str);
+			sum += putchar(*str);
 	}
 	return (sum);
 }
@@ -69,10 +69,10 @@ int print_rot1345(va_list tree, params_t *params)
 		    || (a[i] >= 'a' && a[i] <= 'z'))
 		{
 			index = a[i] - 65;
-			count += _putchar(arr[index]);
+			count += putchar(arr[index]);
 		}
 		else
-			count += _putchar(a[i]);
+			count += putchar(a[i]);
 		i++;
 	}
 	return (count);

@@ -56,7 +56,7 @@ int printing_unsigned(va_list tree, params_t *params)
 	else
 		l = (unsigned int)va_arg(tree, unsigned int);
 	params->unsign = 1;
-	return (print_number(turn(l, 10, CONVERT_UNSIGNED, params), params));
+	return (print_my_number(turn(l, 10, CONVERT_UNSIGNED, params), params));
 }
 
 
@@ -74,10 +74,10 @@ int printing_address(va_list tree, params_t *params)
 	char *tour;
 
 	if (!n)
-		return (_puts("(nil)"));
+		return (puts("(nil)"));
 
 	tour = turn(n, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, params);
 	*--tour = 'x';
 	*--tour = '0';
-	return (print_number(tour, params));
+	return (print_my_number(tour, params));
 }
