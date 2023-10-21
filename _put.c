@@ -12,7 +12,7 @@ int _my_puts(char *tour)
 	char *a = tour;
 
 	while (*tour)
-		putchar(*tour++);
+		_my_putchar(*tour++);
 	return (tour - a);
 }
 

@@ -5,6 +5,7 @@
  * @format: the format strings
  * Return: numbers of bytes printed
  */
+
 int _printf(const char *format, ...)
 {
 	int omar = 0;
@@ -23,7 +24,7 @@ int _printf(const char *format, ...)
 		inite_params(&params, tree);
 		if (*p != '%')
 		{
-			omar += putchar(*p);
+			omar += _my_putchar(*p);
 			continue;
 		}
 		start = p;
@@ -42,7 +43,7 @@ int _printf(const char *format, ...)
 		else
 			omar += gots_print_func(p, tree, &params);
 	}
-	putchar(BUF_FLUSH);
+	_my_putchar(BUF_FLUSH);
 	va_end(tree);
 	return (omar);/*end of the code*/
 }

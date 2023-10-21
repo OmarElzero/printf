@@ -12,11 +12,11 @@ int printing_char(va_list tree, params_t *params)
 	unsigned int pad = 1, sum = 0, ch = va_arg(tree, int);
 
 	if (params->minus_flag)
-		sum += putchar(ch);
+		sum += _my_putchar(ch);
 	while (pad++ < params->width)
-		sum += putchar(pad_char);
+		sum += _my_putchar(pad_char);
 	if (!params->minus_flag)
-		sum += putchar(ch);
+		sum += _my_putchar(ch);
 	return (sum);
 }
 
@@ -65,17 +65,17 @@ int printed_string(va_list tree, params_t *params)
 	{
 		if (params->precision != UINT_MAX)
 			for (i = 0; i < pad; i++)
-				sum += putchar(*tour++);
+				sum += _my_putchar(*tour++);
 		else
 			sum += puts(tour);
 	}
 	while (j++ < params->width)
-		sum += putchar(pad_char);
+		sum += _my_putchar(pad_char);
 	if (!params->minus_flag)
 	{
 		if (params->precision != UINT_MAX)
 			for (i = 0; i < pad; i++)
-				sum += putchar(*tour++);
+				sum += _my_putchar(*tour++);
 		else
 			sum += puts(tour);
 	}
@@ -93,7 +93,7 @@ int print_percent02(va_list tree, params_t *params)
 {
 	(void)tree;
 	(void)params;
-	return (putchar('%'));
+	return (_my_putchar('%'));
 }
 
 /**
@@ -115,16 +115,16 @@ int print_co(va_list tree, params_t *params)
 	{
 		if ((*tour > 0 && *tour < 32) || *tour >= 127)
 		{
-			sum += putchar('\\');
-			sum += putchar('x');
+			sum += _my_putchar('\\');
+			sum += _my_putchar('x');
 			hex = (void *) turn(*tour, 16, 0, params);
 			if (!hex[1])
-				sum += putchar('0');
+				sum += _my_putchar('0');
 			sum += puts(hex);
 		}
 		else
 		{
-			sum += putchar(*tour);
+			sum += _my_putchar(*tour);
 		}
 	}
 	return (sum);

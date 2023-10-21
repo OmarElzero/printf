@@ -80,21 +80,21 @@ int printing_number_right_shift(char *tour, params_t *params)
 		(!params->plus_flag && params->space_flag && !neg2))
 		i++;
 	if (neg && pad_char == '0')
-		n += putchar('-');
+		n += _my_putchar('-');
 	if (params->plus_flag && !neg2 && pad_char == '0' && !params->unsign)
-		n += putchar('+');
+		n += _my_putchar('+');
 	else if (!params->plus_flag && params->space_flag && !neg2 &&
 		!params->unsign && params->zero_flag)
-		n += putchar(' ');
+		n += _my_putchar(' ');
 	while (i++ < params->width)
-		n += putchar(pad_char);
+		n += _my_putchar(pad_char);
 	if (neg && pad_char == ' ')
-		n += putchar('-');
+		n += _my_putchar('-');
 	if (params->plus_flag && !neg2 && pad_char == ' ' && !params->unsign)
-		n += putchar('+');
+		n += _my_putchar('+');
 	else if (!params->plus_flag && params->space_flag && !neg2 &&
 		!params->unsign && !params->zero_flag)
-		n += putchar(' ');
+		n += _my_putchar(' ');
 	n += puts(tour);
 	return (n);
 }
@@ -120,11 +120,11 @@ int printing_number_left_shift(char *tour, params_t *params)
 		neg = 0;
 
 	if (params->plus_flag && !neg2 && !params->unsign)
-		n += putchar('+'), i++;
+		n += _my_putchar('+'), i++;
 	else if (params->space_flag && !neg2 && !params->unsign)
-		n += putchar(' '), i++;
+		n += _my_putchar(' '), i++;
 	n += puts(tour);
 	while (i++ < params->width)
-		n += putchar(pad_char);
+		n += _my_putchar(pad_char);
 	return (n);
 }
