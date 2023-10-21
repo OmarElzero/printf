@@ -134,4 +134,4 @@ char *get_widths5(char *s, params_t *params, va_list tree)
 	}
 	params->width = d;
 	return (s);
-}	
+}

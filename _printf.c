@@ -1,10 +1,8 @@
 #include "main.h"
 
 /**
- *
  * _printf - printing anything we want
  * @format: the format strings
- *
  * Return: numbers of bytes printed
  */
 int _printf(const char *format, ...)
@@ -36,7 +34,7 @@ int _printf(const char *format, ...)
 		}
 		p = get_widths5(p, &params, tree);
 		p = get_precisions1(p, &params, tree);
-		if (get_modifies(p, &params))
+		if (get_modifiers(p, &params))
 			p++;
 		if (!geting_specifier(p))
 			omar += prints_from_too(start, p,

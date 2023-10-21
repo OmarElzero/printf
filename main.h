@@ -85,7 +85,7 @@ int printing_address(va_list tree, params_t *params);
 int (*geting_specifier(char *s))(va_list tree, params_t *params);
 int gots_print_func(char *s, va_list tree, params_t *params);
 int geting_my_flag(char *s, params_t *params);
-int get_modifies(char *s, params_t *params);
+int get_modifiers(char *s, params_t *params);
 char *get_widths5(char *s, params_t *params, va_list ap);
 
 /* convert_number.c module */

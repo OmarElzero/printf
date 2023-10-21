@@ -1,5 +1,4 @@
 #include "main.h"
-#include "convert.h"
 /**
  * printing_char - printing characters
  * @tree: argument pointering
@@ -38,7 +37,7 @@ int print_int_1(va_list tree, params_t *params)
 		l = (short int)va_arg(tree, int);
 	else
 		l = (int)va_arg(tree, int);
-	return (print_my_number(convert(l, 10, 0, params), params));
+	return (print_my_number(turn(l, 10, 0, params), params));
 }
 
 /**
@@ -118,7 +117,7 @@ int print_co(va_list tree, params_t *params)
 		{
 			sum += putchar('\\');
 			sum += putchar('x');
-			hex =(void *) convert(&tour, 16, 0, params);
+			hex = (void *) turn(*tour, 16, 0, params);
 			if (!hex[1])
 				sum += putchar('0');
 			sum += puts(hex);
